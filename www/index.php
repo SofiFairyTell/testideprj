@@ -1,4 +1,5 @@
 <?php
+
 if (!empty($_GET['q'])) {
   switch ($_GET['q']) {
     case 'info':
@@ -6,6 +7,25 @@ if (!empty($_GET['q'])) {
       exit;
       break;
   }
+}
+
+// Функция для подключения к базе данных
+function connect()
+{
+  $mydb = pg_connect("host=localhost port=5433 dbname=mag user=postgres password=root");
+  if (!$mydb) {
+    echo "An error occurred.\n";
+    exit;
+  }
+  return $mydb;
+}
+
+function getContactINFO($uid = 1)
+{
+  $mydb = pg_connect("host=localhost port=5433 dbname=mag user=postgres password=root");
+  $pg = pg_query($mydb, "select get_client($uid)");
+  pg_close($mydb);
+  return $pg;
 }
 ?>
 <!DOCTYPE html>
@@ -43,7 +63,7 @@ if (!empty($_GET['q'])) {
     }
 
     .title {
-      font-size: 96px;
+      font-size: 56px;
     }
 
     .opt {
@@ -65,16 +85,22 @@ if (!empty($_GET['q'])) {
   <div class="container">
     <div class="content">
       <div class="title" title="Saloon">Мой салон</div>
-
-      <!-- <div class="info"><br />
-                      <?php print($_SERVER['SERVER_SOFTWARE']); ?><br />
-                      PHP version: <?php print phpversion(); ?>   <span><a title="phpinfo()" href="/?q=info">info</a></span><br />
-                      Document Root: <?php print($_SERVER['DOCUMENT_ROOT']); ?><br />
-
-                </div>
-                <div class="opt">
-                  <div><a title="Getting Started" href="https://laragon.org/docs">Getting Started</a></div>
-                </div> -->
+      <form action="" method="GET">
+        <input type="text" value="<?= $_GET['uidus'] ?? '' ?>" name="uidus" placeholder="UID клиента...">
+        <input type="submit" class="btn">
+        <div>
+          <span>Результат: </span>
+          <?php
+          if (!empty($_GET)) {
+            $result = getContactINFO((int)$_GET['uidus']);
+            while ($row = pg_fetch_array($result)) {
+              echo 'Клиент: ' . $row[0];
+            }
+          } else {
+            "false";
+          } ?>
+        </div>
+      </form>
     </div>
 
   </div>
