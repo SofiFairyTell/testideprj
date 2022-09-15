@@ -27,7 +27,6 @@ using Npgsql;
                 {
                     con.Close();
                     return "Connected";
-                    // Console.WriteLine("Connected");
                 }
                 return "Not connected";
             }
@@ -42,7 +41,6 @@ using Npgsql;
                 if (con.State == System.Data.ConnectionState.Closed)
                 {
                     return "Disconnected";
-                    // Console.WriteLine("Connected");
                 }
                 return "Not disconnected";
             }
@@ -54,7 +52,6 @@ using Npgsql;
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            //TestConnection();
         }
 
         private void btnConnectDB_Click(object sender, EventArgs e)
@@ -76,24 +73,21 @@ using Npgsql;
                 using (NpgsqlConnection con = GetConnection())
                 {
                     con.Open();
-                    //NpgsqlCommand com = new NpgsqlCommand("get_client");
                     using (NpgsqlCommand cmd = new NpgsqlCommand("get_client", con))
                     {
-                        //cmd.Parameters.AddWithValue("@uid_client", uid_client);
-                        //cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@uid", uid_client);
                         cmd.CommandType = CommandType.StoredProcedure;
                         var result = cmd.ExecuteReader();
-                        //result.GetName(1);
                         while(result.Read())
                         {
-                            tbResFind.Text = tbResFind.Text + result["username"].ToString();
+                            tbResFind.Text =String.Concat(result["uiduser"].ToString(),
+                                                          result["username"].ToString(),
+                                                          result["surnameuser"].ToString(),
+                                                          result["phone"].ToString()
+                                                          );
                         }
-                        
-                        //using (objectyreader = cmd.ExecuteScalar())
-                        //    while (reader.Read())
-                        //    {
-                        //        tbResFind.Text = reader.ToString();
-                        //    }
+                       
+
                     }
                 }
             }
