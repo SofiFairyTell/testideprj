@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = Saloon
-build_property.ProjectDir = C:\Users\SKurbatova\source\phptest\prj\WFprj\Saloon\
+build_property.ProjectDir = C:\Users\SKurbatova\source\phptest\testideprj\prj\WFprj\Saloon\

@@ -17,24 +17,51 @@ using Npgsql;
             {
                 InitializeComponent();
             }
-            private static void TestConnection()
+            private static string ConnectionDB()
             {
                 using (NpgsqlConnection con = GetConnection())
                 {
                     con.Open();
                     if (con.State == System.Data.ConnectionState.Open)
                     {
-                        Console.WriteLine("Connected");
+                    return "Connected";
+                       // Console.WriteLine("Connected");
                     }
+                    return "Not connected";
                 }
             }
-            private static NpgsqlConnection GetConnection()
+
+        private static string DisconnectionDB()
+        {
+            using (NpgsqlConnection con = GetConnection())
+            {
+                con.Close();
+                if (con.State == System.Data.ConnectionState.Closed)
+                {
+                    return "Disconnected";
+                    // Console.WriteLine("Connected");
+                }
+                return "Not disconnected";
+            }
+        }
+
+        private static NpgsqlConnection GetConnection()
             {
                 return new NpgsqlConnection(@"Host=localhost;Port=5433;User Id=postgres; Password=root; Database=mag");
             }
             private void Form1_Load(object sender, EventArgs e)
             {
-                TestConnection();
+                //TestConnection();
             }
+
+        private void btnConnectDB_Click(object sender, EventArgs e)
+        {
+            tbResult.Text = ConnectionDB();
         }
+
+        private void btnDisConnectDB_Click(object sender, EventArgs e)
+        {
+            tbResult.Text = DisconnectionDB();
+        }
+    }
     }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QdBlH4lHejZVlEGnOzgF5JqcPbC1sM90ofZxA4ml2NnV4QAIRJ3pivlnMHR7B9+PXpTrlKXDEhWWz8seyx9hIA==",
+  "dgSpecHash": "wRDf4OiHLOA3RUcMUXupbEYhGebzrAN6P3RCH+xozR6ToUl1GbDJDJ0sLyVVc36bRFwUBr17WuTzg8yzHm2MVw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\SKurbatova\\source\\phptest\\prj\\WFprj\\Saloon\\Saloon.csproj",
+  "projectFilePath": "C:\\Users\\SKurbatova\\source\\phptest\\testideprj\\prj\\WFprj\\Saloon\\Saloon.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\SKurbatova\\.nuget\\packages\\npgsql\\6.0.6\\npgsql.6.0.6.nupkg.sha512",
     "C:\\Users\\SKurbatova\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
